@@ -3,6 +3,7 @@ import Head from "next/head";
 import Grid from "../components/Grid";
 import Page from "../components/Page";
 import Teaser from "../components/Teaser";
+import { NextPage } from "next";
 
 const components = {
   grid: Grid,
@@ -18,7 +19,11 @@ storyblokInit({
   },
   components,
 });
-const Application = ({ Component, pageProps }) => {
+interface ApplicationProps {
+  Component: any;
+  pageProps: {};
+}
+const Application: NextPage<ApplicationProps> = ({ Component, pageProps }) => {
   return (
     <>
       <Head>

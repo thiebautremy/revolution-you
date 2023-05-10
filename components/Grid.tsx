@@ -1,6 +1,11 @@
 import { storyblokEditable, StoryblokComponent } from "@storyblok/react";
+interface GridProps {
+  blok: {
+    columns: { _uid: string }[];
+  };
+}
 
-const Grid = ({ blok }) => {
+const Grid: React.FC<GridProps> = ({ blok }) => {
   return (
     <div className="grid" {...storyblokEditable(blok)}>
       {blok.columns.map((nestedBlok) => (

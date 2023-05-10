@@ -1,6 +1,10 @@
 import { storyblokEditable, StoryblokComponent } from "@storyblok/react";
-
-const Page = ({ blok }) => (
+interface PageProps {
+  blok: {
+    body: { _uid: string }[];
+  };
+}
+const Page: React.FC<PageProps> = ({ blok }) => (
   <main {...storyblokEditable(blok)}>
     {blok.body.map((nestedBlok) => (
       <StoryblokComponent blok={nestedBlok} key={nestedBlok._uid} />
