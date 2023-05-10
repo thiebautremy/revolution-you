@@ -1,7 +1,10 @@
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
-
-import { StoryblokComponent, getStoryblokApi } from "@storyblok/react";
+import {
+  ISbStoriesParams,
+  StoryblokComponent,
+  getStoryblokApi,
+} from "@storyblok/react";
 import {
   ReactElement,
   JSXElementConstructor,
@@ -46,7 +49,7 @@ export async function getStaticProps() {
   let slug = "/home";
 
   // load the draft version
-  let sbParams = {
+  let sbParams: string | undefined | ISbStoriesParams = {
     version: "published", // or 'published'
   };
 
