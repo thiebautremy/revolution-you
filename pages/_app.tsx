@@ -1,14 +1,12 @@
 import { storyblokInit, apiPlugin } from "@storyblok/react";
 import Head from "next/head";
-import Grid from "../components/Grid";
 import Page from "../components/Page";
-import Teaser from "../components/Teaser";
 import { NextPage } from "next";
+import Header from "@/components/Header/Header";
 
 const components = {
-  grid: Grid,
-  teaser: Teaser,
   page: Page,
+  Header,
 };
 
 storyblokInit({

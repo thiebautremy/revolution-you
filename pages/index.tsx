@@ -5,64 +5,66 @@ import {
   StoryblokComponent,
   getStoryblokApi,
 } from "@storyblok/react";
-import {
-  ReactElement,
-  JSXElementConstructor,
-  ReactFragment,
-  ReactPortal,
-  PromiseLikeOfReactNode,
-} from "react";
 import variables from "../styles/_variables.module.scss";
+import { NextPage, GetStaticProps } from "next";
+import { LanguageType } from "@/types/types";
 
-export default function Home(props: {
+interface HomePropsType extends LanguageType {
   story: {
     content: {};
-    name:
-      | string
-      | number
-      | boolean
-      | ReactElement<any, string | JSXElementConstructor<any>>
-      | ReactFragment
-      | ReactPortal
-      | PromiseLikeOfReactNode
-      | null
-      | undefined;
   };
-}) {
+}
+export const Home: NextPage<HomePropsType> = ({
+  story,
+  locale,
+  locales,
+  defaultLocale,
+}) => {
+  console.log(locales);
   return (
     <div className={styles.container}>
       <Head>
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      <header>
-        <h1 style={{ color: variables.primaryColor }}>
-          {props.story ? props.story.name : "My Site"}
-        </h1>
-      </header>
-      <StoryblokComponent blok={props.story.content} />
+      <StoryblokComponent
+        blok={story.content}
+        locales={locales}
+        locale={locale}
+        defaultLocale={defaultLocale}
+      />
       <main></main>
     </div>
   );
-}
+};
 
-export async function getStaticProps() {
+export default Home;
+
+export const getStaticProps: GetStaticProps = async ({
+  locale,
+  locales,
+  defaultLocale,
+}) => {
   // home is the default slug for the homepage in Storyblok
   let slug = "/home";
 
   // load the draft version
   let sbParams: string | undefined | ISbStoriesParams = {
-    version: "published", // or 'published'
+    version: "published",
+    language: locale, // or 'published'
   };
 
+  // &language=
   const storyblokApi = getStoryblokApi();
   let { data } = await storyblokApi.get(`cdn/stories/${slug}`, sbParams);
 
   return {
     props: {
+      locale,
+      locales,
+      defaultLocale,
       story: data ? data.story : false,
     },
     revalidate: 3600, // revalidate every hour
   };
-}
+};
