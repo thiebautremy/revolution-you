@@ -20,7 +20,6 @@ export const Home: NextPage<HomePropsType> = ({
   locales,
   defaultLocale,
 }) => {
-  console.log(locales);
   return (
     <div className={styles.container}>
       <Head>
