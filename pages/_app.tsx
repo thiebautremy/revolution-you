@@ -3,10 +3,12 @@ import Head from "next/head";
 import Page from "../components/Page";
 import { NextPage } from "next";
 import Header from "@/components/Header/Header";
+import Video from "@/components/Video/Video";
 
 const components = {
   page: Page,
   Header,
+  Video,
 };
 
 storyblokInit({
