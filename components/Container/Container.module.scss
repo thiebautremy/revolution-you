@@ -1,0 +1,11 @@
+@use "/styles/_variables.scss" as var;
+
+.isBig {
+  padding: var.$gap-medium;
+  width: 100%;
+}
+
+.isSmall {
+  padding: var.$gap-large;
+  width: 90%;
+}

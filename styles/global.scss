@@ -1,0 +1,46 @@
+@use "/styles/_variables.scss" as var;
+@import "reset";
+
+body {
+  font-family: font-regular, Courier, monospace;
+}
+
+h1 {
+  font-family: font-bold, Courier, monospace;
+  font-size: 3rem;
+  margin: calc(var.$gap-small / 2);
+
+  @media screen and (max-width: var.$screen-phone) {
+    font-size: 2rem;
+    margin: calc(var.$gap-small / 2) 0;
+  }
+}
+
+h2 {
+  font-family: font-medium, Courier, monospace;
+  font-size: 2rem;
+  margin: calc(var.$gap-medium / 2);
+
+  @media screen and (max-width: var.$screen-phone) {
+    font-size: 1.5rem;
+    margin: calc(var.$gap-medium / 2) 0;
+  }
+}
+
+h3 {
+  font-size: 1.5rem;
+  margin: calc(var.$gap-large / 2);
+
+  @media screen and (max-width: var.$screen-phone) {
+    margin: calc(var.$gap-large / 2) 0;
+    font-size: 1rem;
+  }
+}
+
+p {
+  margin: calc(var.$gap-xlarge / 2);
+
+  @media screen and (max-width: var.$screen-phone) {
+    margin: calc(var.$gap-xlarge / 2) 0;
+  }
+}

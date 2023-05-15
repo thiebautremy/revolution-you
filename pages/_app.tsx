@@ -1,3 +1,4 @@
+import "../styles/global.scss";
 import { storyblokInit, apiPlugin } from "@storyblok/react";
 import Head from "next/head";
 import Page from "../components/Page";
