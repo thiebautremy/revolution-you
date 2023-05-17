@@ -1,38 +1,41 @@
 import Head from "next/head";
 import styles from "../styles/Home.module.scss";
-import {
-  ISbStoriesParams,
-  StoryblokComponent,
-  getStoryblokApi,
-} from "@storyblok/react";
-import variables from "../styles/_variables.module.scss";
+import { ISbStoriesParams, getStoryblokApi } from "@storyblok/react";
 import { NextPage, GetStaticProps } from "next";
 import { LanguageType } from "@/types/types";
+import VideoContainer from "@/components/Videos/VideoContainer";
+import { VideoContentType } from "@/components/Videos/Video";
+import Layout from "@/components/Layout/Layout";
 
 interface HomePropsType extends LanguageType {
   story: {
     content: {};
   };
+  videos: { uuid: string; content: VideoContentType; tag_list: string[] }[];
 }
 export const Home: NextPage<HomePropsType> = ({
   story,
   locale,
   locales,
   defaultLocale,
+  videos,
 }) => {
+  console.log(videos);
   return (
     <div className={styles.container}>
       <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
+        <title>Revolution You</title>
       </Head>
-      <StoryblokComponent
+      <Layout
         blok={story.content}
         locales={locales}
         locale={locale}
         defaultLocale={defaultLocale}
-      />
-      <main></main>
+      >
+        <main>
+          <VideoContainer videos={videos} />
+        </main>
+      </Layout>
     </div>
   );
 };
@@ -57,12 +60,18 @@ export const getStaticProps: GetStaticProps = async ({
   const storyblokApi = getStoryblokApi();
   let { data } = await storyblokApi.get(`cdn/stories/${slug}`, sbParams);
 
+  let { data: videos } = await storyblokApi.get(`cdn/stories`, {
+    content_type: "Video",
+    language: locale,
+  });
+
   return {
     props: {
       locale,
       locales,
       defaultLocale,
       story: data ? data.story : false,
+      videos: videos ? videos.stories : false,
     },
     revalidate: 3600, // revalidate every hour
   };

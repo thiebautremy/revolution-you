@@ -1,0 +1,19 @@
+@use "/styles/_variables.scss" as var;
+
+.videoContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.tagsContainer {
+  display: flex;
+  justify-content: space-evenly;
+  min-height: 3rem;
+
+  .tag {
+    border: 1px solid var.$black;
+    border-radius: var.$radius;
+    padding: calc(var.$gap-small/2) var.$gap-medium;
+  }
+}

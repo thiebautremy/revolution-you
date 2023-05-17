@@ -1,36 +1,47 @@
+import styles from "./Header.module.scss";
 import { useRouter } from "next/router";
 import { LanguageType } from "@/types/types";
-import Container from "../Container/Container";
+import cx from "classnames";
+import fr from "../../public/assets/fr.png";
+import en from "../../public/assets/en.png";
+import Image from "next/image";
 
 interface HeaderProps extends LanguageType {
-  blok: {
+  content: {
     title: string;
     description: string;
   };
 }
 
-const Header: React.FC<HeaderProps> = ({ blok, locales, locale }) => {
+const Header: React.FC<HeaderProps> = ({ content, locales, locale }) => {
+  const { title, description } = content;
   const router = useRouter();
   const changeLocale = (loc: string) => {
     router.push(router.asPath, router.asPath, { locale: loc });
   };
+
   return (
     <header>
-      <Container isBig={true}>
-        <h2>{blok.title}</h2>
-        <h3>{blok.description}</h3>
-        {locales.map((loc) => (
-          <span
-            key={loc}
-            onClick={() => changeLocale(loc)}
-            className={`block px-4 py-1 md:p-2 rounded-lg lg:px-4 cursor-pointer ${
-              locale === loc ? "bg-black text-white" : ""
-            }`}
-          >
-            {loc}
-          </span>
-        ))}
-      </Container>
+      <h2>{title}</h2>
+      <h3>{description}</h3>
+      {locales.map((loc) => (
+        <div
+          className={cx(
+            styles.imageContainer,
+            locale !== loc ? styles.languageNotActive : null
+          )}
+          key={loc}
+          onClick={() => changeLocale(loc)}
+        >
+          <Image
+            src={loc === "fr" ? fr : en}
+            alt={"french flag"}
+            loading="lazy"
+            fill
+            style={{ objectFit: "cover" }}
+          />
+        </div>
+      ))}
     </header>
   );
 };
