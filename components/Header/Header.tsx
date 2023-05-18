@@ -39,29 +39,30 @@ const Header: React.FC<HeaderProps> = ({ content, locales, locale }) => {
           />
         </li>
         <li className={styles.navItem}>Contact</li>
-        <li className={styles.navItem}>NSP</li>
+        <li className={cx(styles.navItem, styles.languages)}>
+          {locales.map((loc) => (
+            <div
+              className={cx(
+                styles.imageContainer,
+                locale !== loc ? styles.languageNotActive : null
+              )}
+              key={loc}
+              onClick={() => changeLocale(loc)}
+            >
+              <Image
+                src={loc === "fr" ? fr : en}
+                alt={"french flag"}
+                loading="lazy"
+                fill
+                style={{ objectFit: "cover" }}
+              />
+            </div>
+          ))}
+        </li>
       </ul>
       <div className={styles.triangle}></div>
       <h2>{title}</h2>
       <h3>{description}</h3>
-      {locales.map((loc) => (
-        <div
-          className={cx(
-            styles.imageContainer,
-            locale !== loc ? styles.languageNotActive : null
-          )}
-          key={loc}
-          onClick={() => changeLocale(loc)}
-        >
-          <Image
-            src={loc === "fr" ? fr : en}
-            alt={"french flag"}
-            loading="lazy"
-            fill
-            style={{ objectFit: "cover" }}
-          />
-        </div>
-      ))}
     </header>
   );
 };

@@ -1,8 +1,11 @@
+@use "/styles/_variables.scss" as var;
+
 .header {
   .navList {
     display: flex;
     justify-content: space-around;
     background-color: #fbb41e;
+    color: var.$black;
 
     .navItem {
       font-size: 1.5rem;
@@ -31,7 +34,11 @@
       cursor: pointer;
     }
   }
-  .languageNotActive {
-    opacity: 0.5;
+  .languages {
+    display: flex;
+
+    .languageNotActive {
+      opacity: 0.5;
+    }
   }
 }
