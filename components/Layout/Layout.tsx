@@ -21,7 +21,7 @@ const Layout: React.FC<LayoutProps> = ({
   };
 
   return (
-    <Container isBig={true}>
+    <>
       <Header
         content={...getContentForComponent("Header")}
         locales={locales}
@@ -30,7 +30,7 @@ const Layout: React.FC<LayoutProps> = ({
       <h1>{content.title}</h1>
       {children}
       <Footer content={...getContentForComponent("Footer")} />
-    </Container>
+    </>
   );
 };
 

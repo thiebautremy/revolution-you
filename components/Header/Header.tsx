@@ -10,6 +10,10 @@ interface HeaderProps extends LanguageType {
   content: {
     title: string;
     description: string;
+    logo: {
+      alt: string;
+      filename: string;
+    };
   };
 }
 
@@ -21,7 +25,23 @@ const Header: React.FC<HeaderProps> = ({ content, locales, locale }) => {
   };
 
   return (
-    <header>
+    <header className={styles.header}>
+      <ul className={styles.navList}>
+        <li className={styles.navItem}>Accueil</li>
+        <li className={styles.navItem}>Blog</li>
+        <li className={cx(styles.logoContainer, styles.navItem)}>
+          <Image
+            src={content.logo.filename}
+            alt={content.logo.alt}
+            loading="lazy"
+            fill
+            style={{ objectFit: "cover" }}
+          />
+        </li>
+        <li className={styles.navItem}>Contact</li>
+        <li className={styles.navItem}>NSP</li>
+      </ul>
+      <div className={styles.triangle}></div>
       <h2>{title}</h2>
       <h3>{description}</h3>
       {locales.map((loc) => (

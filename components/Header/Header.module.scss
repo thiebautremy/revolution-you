@@ -1,11 +1,37 @@
-.imageContainer {
-  position: relative;
-  width: 2rem;
-  height: 2rem;
-  &:hover {
-    cursor: pointer;
+.header {
+  .navList {
+    display: flex;
+    justify-content: space-around;
+    background-color: #fbb41e;
+
+    .navItem {
+      font-size: 1.5rem;
+    }
+
+    .logoContainer {
+      position: relative;
+      width: 3rem;
+      height: 3rem;
+    }
   }
-}
-.languageNotActive {
-  opacity: 0.5;
+
+  .triangle {
+    width: 0px;
+    height: 0px;
+    border-style: solid;
+    border-width: 0 51vw 35px 48vw;
+    border-color: transparent transparent #fbb41e transparent;
+    transform: rotate(180deg);
+  }
+  .imageContainer {
+    position: relative;
+    width: 2rem;
+    height: 2rem;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  .languageNotActive {
+    opacity: 0.5;
+  }
 }
