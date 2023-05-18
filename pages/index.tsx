@@ -20,14 +20,13 @@ export const Home: NextPage<HomePropsType> = ({
   defaultLocale,
   videos,
 }) => {
-  console.log(videos);
   return (
     <div className={styles.container}>
       <Head>
         <title>Revolution You</title>
       </Head>
       <Layout
-        blok={story.content}
+        content={story.content}
         locales={locales}
         locale={locale}
         defaultLocale={defaultLocale}

@@ -5,11 +5,11 @@ import Page from "@/components/Page/Page";
 import { NextPage } from "next";
 
 const components = {
-  page: Page,
+  // page: Page,
 };
-
+const token = process.env.NEXT_PUBLIC_STORYBLOK_TOKEN;
 storyblokInit({
-  accessToken: "nkU6uknIvowM1wHRVSUdDwtt",
+  accessToken: token,
   use: [apiPlugin],
   apiOptions: {
     region: "eu",

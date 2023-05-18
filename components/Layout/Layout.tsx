@@ -5,18 +5,21 @@ import Footer from "../Footer/Footer";
 
 interface LayoutProps extends LanguageType {
   children: any;
-  blok: any;
+  content: any;
 }
 
-const Layout: React.FC<LayoutProps> = ({ blok, locales, locale, children }) => {
-  console.log(
-    blok.body.find((item: { component: string }) => item.component === "Header")
-  );
+const Layout: React.FC<LayoutProps> = ({
+  content,
+  locales,
+  locale,
+  children,
+}) => {
   const getContentForComponent = (strComponent: string) => {
-    return blok.body.find(
+    return content.body.find(
       (item: { component: string }) => item.component === strComponent
     );
   };
+
   return (
     <Container isBig={true}>
       <Header
@@ -24,6 +27,7 @@ const Layout: React.FC<LayoutProps> = ({ blok, locales, locale, children }) => {
         locales={locales}
         locale={locale}
       />
+      <h1>{content.title}</h1>
       {children}
       <Footer content={...getContentForComponent("Footer")} />
     </Container>

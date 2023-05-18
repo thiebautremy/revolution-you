@@ -4,8 +4,7 @@ interface PageProps extends LanguageType {
   blok: {
     body: { _uid: string }[];
   };
-  story: any;
-  test: string;
+  title: string;
 }
 const Page: React.FC<PageProps> = ({
   blok,
