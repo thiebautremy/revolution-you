@@ -50,7 +50,7 @@ export const getStaticProps: GetStaticProps = async ({
     : "home";
 
   let sbParams = {
-    language: locale, // or 'published'
+    language: locale,
   };
 
   const storyblokApi = getStoryblokApi();

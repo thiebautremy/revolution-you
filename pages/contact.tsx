@@ -1,4 +1,4 @@
-import { NextPage } from "next";
+import { GetStaticProps, NextPage } from "next";
 import Layout from "@/components/Layout/Layout";
 import { LanguageType } from "@/types/types";
 import { getStoryblokApi } from "@storyblok/react";
@@ -34,11 +34,14 @@ const Contact: NextPage<ContactProps> = ({
   );
 };
 
-export async function getStaticProps({ locale, locales, defaultLocale }) {
+export const getStaticProps: GetStaticProps = async ({
+  locale,
+  locales,
+  defaultLocale,
+}) => {
   const slug = "contact";
 
   const params = {
-    version: "published",
     language: locale,
   };
 
@@ -54,6 +57,6 @@ export async function getStaticProps({ locale, locales, defaultLocale }) {
     },
     revalidate: 3600,
   };
-}
+};
 
 export default Contact;
