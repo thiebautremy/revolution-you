@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { getStoryblokApi } from "@storyblok/react";
 import Layout from "@/components/Layout/Layout";
-import { GetStaticProps, NextPage } from "next";
+import { GetStaticProps, NextPage, GetStaticPaths } from "next";
 import { LanguageType } from "@/types/types";
 
 interface PagePropsType extends LanguageType {
@@ -68,7 +68,7 @@ export const getStaticProps: GetStaticProps = async ({
   };
 };
 
-export async function getStaticPaths({ locales }) {
+export const getStaticPaths = async ({ locales }: any) => {
   const storyblokApi = getStoryblokApi();
   let { data } = await storyblokApi.get("cdn/links/");
 
@@ -90,4 +90,4 @@ export async function getStaticPaths({ locales }) {
     paths: paths,
     fallback: false,
   };
-}
+};
