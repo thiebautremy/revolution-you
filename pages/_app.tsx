@@ -3,9 +3,10 @@ import { storyblokInit, apiPlugin } from "@storyblok/react";
 import Head from "next/head";
 import Page from "@/components/Page/Page";
 import { NextPage } from "next";
-
+import Header from "@/components/Header/Header";
 const components = {
-  // page: Page,
+  page: Page,
+  Header,
 };
 const token = process.env.NEXT_PUBLIC_STORYBLOK_TOKEN;
 storyblokInit({

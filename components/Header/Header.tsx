@@ -7,7 +7,7 @@ import en from "../../public/assets/en.png";
 import Image from "next/image";
 
 interface HeaderProps extends LanguageType {
-  content: {
+  blok: {
     title: string;
     description: string;
     logo: {
@@ -17,8 +17,8 @@ interface HeaderProps extends LanguageType {
   };
 }
 
-const Header: React.FC<HeaderProps> = ({ content, locales, locale }) => {
-  const { title, description } = content;
+const Header: React.FC<HeaderProps> = ({ blok, locales, locale }) => {
+  const { title, description } = blok;
   const router = useRouter();
   const changeLocale = (loc: string) => {
     router.push(router.asPath, router.asPath, { locale: loc });
@@ -31,8 +31,8 @@ const Header: React.FC<HeaderProps> = ({ content, locales, locale }) => {
         <li className={styles.navItem}>Blog</li>
         <li className={cx(styles.logoContainer, styles.navItem)}>
           <Image
-            src={content.logo.filename}
-            alt={content.logo.alt}
+            src={blok.logo.filename}
+            alt={blok.logo.alt}
             loading="lazy"
             fill
             style={{ objectFit: "cover" }}

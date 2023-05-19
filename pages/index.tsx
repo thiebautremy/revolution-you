@@ -13,7 +13,7 @@ interface HomePropsType extends LanguageType {
   };
   videos: { uuid: string; content: VideoContentType; tag_list: string[] }[];
 }
-export const Home: NextPage<HomePropsType> = ({
+const Home: NextPage<HomePropsType> = ({
   story,
   locale,
   locales,

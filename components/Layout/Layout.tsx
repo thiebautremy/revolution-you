@@ -23,7 +23,7 @@ const Layout: React.FC<LayoutProps> = ({
   return (
     <>
       <Header
-        content={...getContentForComponent("Header")}
+        blok={...getContentForComponent("Header")}
         locales={locales}
         locale={locale}
       />
