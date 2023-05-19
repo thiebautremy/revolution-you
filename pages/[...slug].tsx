@@ -50,7 +50,7 @@ export const getStaticProps: GetStaticProps = async ({
   locales,
   defaultLocale,
 }) => {
-  let slug = params.slug ? params.slug.join("/") : "home";
+  let slug = params?.slug ? params?.slug?.join("/") : "home";
 
   let sbParams = {
     version: "published",
