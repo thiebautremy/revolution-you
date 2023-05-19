@@ -50,7 +50,6 @@ export const getStaticProps: GetStaticProps = async ({
     : "home";
 
   let sbParams = {
-    version: "published",
     language: locale, // or 'published'
   };
 
@@ -73,7 +72,7 @@ export async function getStaticPaths({ locales }) {
   const storyblokApi = getStoryblokApi();
   let { data } = await storyblokApi.get("cdn/links/");
 
-  let paths = [];
+  let paths: { params: { slug: any }; locale: any }[] = [];
   Object.keys(data.links).forEach((linkKey) => {
     if (data.links[linkKey].is_folder || data.links[linkKey].slug === "home") {
       return;
