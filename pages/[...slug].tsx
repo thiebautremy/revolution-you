@@ -1,10 +1,5 @@
 import Head from "next/head";
-
-import {
-  useStoryblokState,
-  getStoryblokApi,
-  StoryblokComponent,
-} from "@storyblok/react";
+import { getStoryblokApi } from "@storyblok/react";
 import Layout from "@/components/Layout/Layout";
 import { GetStaticProps, NextPage } from "next";
 import { LanguageType } from "@/types/types";
@@ -50,7 +45,9 @@ export const getStaticProps: GetStaticProps = async ({
   locales,
   defaultLocale,
 }) => {
-  let slug = params?.slug ? params?.slug?.join("/") : "home";
+  let slug = params?.slug
+    ? typeof params.slug !== "string" && params.slug.join("/")
+    : "home";
 
   let sbParams = {
     version: "published",
