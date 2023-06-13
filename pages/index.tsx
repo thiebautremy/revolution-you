@@ -1,38 +1,35 @@
+import { useEffect, useState } from "react";
 import Head from "next/head";
 import styles from "../styles/Home.module.scss";
-import { ISbStoriesParams, getStoryblokApi } from "@storyblok/react";
 import { NextPage, GetStaticProps } from "next";
-import { LanguageType } from "@/types/types";
 import VideoContainer from "@/components/Videos/VideoContainer";
-import { VideoContentType } from "@/components/Videos/Video";
+import { VideoProps } from "@/components/Videos/Video";
 import Layout from "@/components/Layout/Layout";
+import { Client } from "@notionhq/client";
 
-interface HomePropsType extends LanguageType {
-  story: {
-    content: {};
-  };
-  videos: { uuid: string; content: VideoContentType; tag_list: string[] }[];
+interface HomePropsType {
+  videosData: VideoProps[];
 }
-const Home: NextPage<HomePropsType> = ({
-  story,
-  locale,
-  locales,
-  defaultLocale,
-  videos,
-}) => {
+
+const notionToken = process.env.NEXT_PUBLIC_NOTION_TOKEN;
+const databaseId = process.env.NEXT_PUBLIC_NOTION_DB_ID;
+
+const Home: NextPage<HomePropsType> = ({ videosData }) => {
+  console.log(videosData);
+  const [videosState, setVideosState] = useState<VideoProps[]>();
+
+  useEffect(() => {
+    setVideosState(videosData);
+  }, [videosData]);
+
   return (
     <div className={styles.container}>
       <Head>
         <title>Revolution You</title>
       </Head>
-      <Layout
-        content={story.content}
-        locales={locales}
-        locale={locale}
-        defaultLocale={defaultLocale}
-      >
+      <Layout>
         <main>
-          <VideoContainer videos={videos} />
+          <VideoContainer videos={videosState} />
         </main>
       </Layout>
     </div>
@@ -41,37 +38,18 @@ const Home: NextPage<HomePropsType> = ({
 
 export default Home;
 
-export const getStaticProps: GetStaticProps = async ({
-  locale,
-  locales,
-  defaultLocale,
-}) => {
-  // home is the default slug for the homepage in Storyblok
-  let slug = "/home";
+export const getStaticProps: GetStaticProps = async () => {
+  const notion = new Client({
+    auth: notionToken,
+  });
 
-  // load the draft version
-  let sbParams: string | undefined | ISbStoriesParams = {
-    version: "published",
-    language: locale, // or 'published'
-  };
-
-  // &language=
-  const storyblokApi = getStoryblokApi();
-  let { data } = await storyblokApi.get(`cdn/stories/${slug}`, sbParams);
-
-  let { data: videos } = await storyblokApi.get(`cdn/stories`, {
-    content_type: "Video",
-    language: locale,
+  const response = await notion.databases.query({
+    database_id: databaseId,
   });
 
   return {
     props: {
-      locale,
-      locales,
-      defaultLocale,
-      story: data ? data.story : false,
-      videos: videos ? videos.stories : false,
+      videosData: response.results,
     },
-    revalidate: 3600, // revalidate every hour
   };
 };

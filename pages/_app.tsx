@@ -1,22 +1,9 @@
 import "../styles/global.scss";
-import { storyblokInit, apiPlugin } from "@storyblok/react";
 import Head from "next/head";
-import Page from "@/components/Page/Page";
 import { NextPage } from "next";
-import Header from "@/components/Header/Header";
-const components = {
-  page: Page,
-  Header,
-};
-const token = process.env.NEXT_PUBLIC_STORYBLOK_TOKEN;
-storyblokInit({
-  accessToken: token,
-  use: [apiPlugin],
-  apiOptions: {
-    region: "eu",
-  },
-  components,
-});
+import { AppContextProvider } from "@/context/appContext";
+import "../i18n/config";
+
 interface ApplicationProps {
   Component: any;
   pageProps: {};
@@ -30,7 +17,9 @@ const Application: NextPage<ApplicationProps> = ({ Component, pageProps }) => {
           content="height=device-height,width=device-width, initial-scale=1.0, minimum-scale=1.0"
         />
       </Head>
-      <Component {...pageProps} />
+      <AppContextProvider>
+        <Component {...pageProps} />
+      </AppContextProvider>
     </>
   );
 };

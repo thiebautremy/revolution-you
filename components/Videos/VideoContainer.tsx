@@ -1,25 +1,17 @@
 import Container from "../Container/Container";
-import Video, { VideoContentType } from "./Video";
+import Video, { VideoProps } from "./Video";
 import styles from "./Video.module.scss";
 
-export type VideoContainerProps = {
-  videos: {
-    uuid: string;
-    content: VideoContentType;
-    tag_list: string[];
-  }[];
+export type VideoContainerType = {
+  videos?: VideoProps[];
 };
 
-const VideoContainer: React.FC<VideoContainerProps> = ({ videos }) => {
+const VideoContainer: React.FC<VideoContainerType> = ({ videos }) => {
   return (
     <Container isBig={false}>
       <div className={styles.videoContainer}>
-        {videos.map((video) => (
-          <Video
-            content={video.content}
-            key={video.uuid}
-            tagList={video.tag_list}
-          />
+        {videos?.map((video) => (
+          <Video properties={video.properties} key={video.id} />
         ))}
       </div>
     </Container>

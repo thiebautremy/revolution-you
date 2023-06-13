@@ -10,18 +10,22 @@
   },
   "dependencies": {
     "@emailjs/browser": "^3.11.0",
-    "@storyblok/react": "^2.0.19",
+    "@notionhq/client": "^2.2.5",
     "@types/node": "20.1.2",
     "@types/react": "18.2.6",
     "@types/react-dom": "18.2.4",
+    "axios": "^1.4.0",
     "classnames": "^2.3.2",
     "eslint": "8.40.0",
     "eslint-config-next": "13.4.1",
+    "i18next": "^22.5.1",
     "next": "13.4.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-i18next": "^12.3.1",
     "react-player": "^2.12.0",
     "sass": "^1.62.1",
+    "sharp": "^0.32.1",
     "typescript": "5.0.4"
   },
   "devDependencies": {

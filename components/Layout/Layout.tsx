@@ -1,35 +1,20 @@
-import { LanguageType } from "@/types/types";
-import Container from "../Container/Container";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
+import { useTranslation } from "react-i18next";
 
-interface LayoutProps extends LanguageType {
+interface LayoutProps {
   children: any;
-  content: any;
 }
 
-const Layout: React.FC<LayoutProps> = ({
-  content,
-  locales,
-  locale,
-  children,
-}) => {
-  const getContentForComponent = (strComponent: string) => {
-    return content.body.find(
-      (item: { component: string }) => item.component === strComponent
-    );
-  };
+const Layout: React.FC<LayoutProps> = ({ children }) => {
+  const { t } = useTranslation();
 
   return (
     <>
-      <Header
-        blok={...getContentForComponent("Header")}
-        locales={locales}
-        locale={locale}
-      />
-      <h1>{content.title}</h1>
+      <Header />
+      <h1>{t("home_page.title")}</h1>
       {children}
-      <Footer content={...getContentForComponent("Footer")} />
+      <Footer />
     </>
   );
 };

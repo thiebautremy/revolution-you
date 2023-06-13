@@ -1,15 +1,9 @@
-interface FooterProps {
-  content: {
-    title: string;
-    description: string;
-  };
-}
+interface FooterProps {}
 
-const Footer: React.FC<FooterProps> = ({ content }) => {
-  const { title } = content;
+const Footer: React.FC<FooterProps> = () => {
   return (
     <header>
-      <h2>{title}</h2>
+      <h2>Footer</h2>
     </header>
   );
 };

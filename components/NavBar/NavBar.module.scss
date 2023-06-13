@@ -1,0 +1,33 @@
+@use "/styles/_variables.scss" as var;
+
+.navList {
+  display: flex;
+  justify-content: space-around;
+  background-color: #fbb41e;
+  color: var.$black;
+
+  .navItem {
+    font-size: 1.5rem;
+  }
+
+  .logoContainer {
+    position: relative;
+    width: 3rem;
+    height: 3rem;
+  }
+}
+.imageContainer {
+  position: relative;
+  width: 2rem;
+  height: 2rem;
+  &:hover {
+    cursor: pointer;
+  }
+}
+.languages {
+  display: flex;
+
+  .languageNotActive {
+    opacity: 0.5;
+  }
+}
