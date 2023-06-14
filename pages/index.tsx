@@ -12,7 +12,7 @@ interface HomePropsType {
 }
 
 const notionToken = process.env.NEXT_PUBLIC_NOTION_TOKEN;
-const databaseId = process.env.NEXT_PUBLIC_NOTION_DB_ID;
+const databaseId = process.env.NEXT_PUBLIC_NOTION_DB_ID as string;
 
 const Home: NextPage<HomePropsType> = ({ videosData }) => {
   console.log(videosData);
