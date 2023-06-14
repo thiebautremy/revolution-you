@@ -10,7 +10,7 @@ type StateType = {
 
 type Props = { children: ReactElement };
 
-const AppContext = createContext<AppContextType | undefined>(undefined);
+const AppContext = createContext<AppContextType>({} as AppContextType);
 
 export const AppContextProvider: React.FC<Props> = ({ children }) => {
   const [appContext, setAppContext] = useState<StateType>({

@@ -19,7 +19,7 @@ export type VideoType = {
 
 const Video: React.FC<VideoProps> = ({ properties }) => {
   console.log("🚀 ~ file: Video.tsx:19 ~ properties:", properties);
-  const { appContext, setAppContext } = useAppContext();
+  const { appContext } = useAppContext();
   const titleFr = properties.title_fr.title[0].plain_text;
   const titleEn = properties.title_en.rich_text[0].plain_text;
   const descriptionFr = properties.description_fr.rich_text[0].plain_text;
