@@ -1,5 +1,13 @@
 {
-    "home_page": {
+    "navBar": {
+        "home": "Accueil",
+        "blog": "Blog",
+        "contact": "Contact"
+    },
+    "homePage": {
       "title": "Bienvenue sur ton tableau de bord !"
-    }
+    },
+    "contact": {
+        "title": "Contact"
+      }
   }

@@ -1,26 +1,27 @@
 import styles from "./Video.module.scss";
 
-interface TagsProps {
-  tagList: string[];
-}
+export type TagsType = {
+  tagList: { color: string; name: string; id: string }[];
+};
 
 type TagProps = {
   tag: string;
+  color: string;
 };
 
-const Tags: React.FC<TagsProps> = ({ tagList }) => {
+const Tags: React.FC<TagsType> = ({ tagList }) => {
   return (
     <div className={styles.tagsContainer}>
       {tagList?.map((tag) => (
-        <Tag key={tag} tag={tag} />
+        <Tag key={tag.id} tag={tag.name} color={tag.color} />
       ))}
     </div>
   );
 };
 
-const Tag: React.FC<TagProps> = ({ tag }) => {
+const Tag: React.FC<TagProps> = ({ tag, color }) => {
   return (
-    <div className={styles.tag}>
+    <div className={styles.tag} style={{ backgroundColor: `${color}` }}>
       <span>{tag}</span>
     </div>
   );

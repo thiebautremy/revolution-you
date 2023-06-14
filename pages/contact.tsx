@@ -11,7 +11,7 @@ const Contact: NextPage<ContactProps> = () => {
       <Head>
         <title>Revolution You - Contact</title>
       </Head>
-      <Layout>
+      <Layout title={"contact.title"}>
         <ContactForm />
       </Layout>
     </>

@@ -15,7 +15,6 @@ const notionToken = process.env.NEXT_PUBLIC_NOTION_TOKEN;
 const databaseId = process.env.NEXT_PUBLIC_NOTION_DB_ID as string;
 
 const Home: NextPage<HomePropsType> = ({ videosData }) => {
-  console.log(videosData);
   const [videosState, setVideosState] = useState<VideoProps[]>();
 
   useEffect(() => {
@@ -27,7 +26,7 @@ const Home: NextPage<HomePropsType> = ({ videosData }) => {
       <Head>
         <title>Revolution You</title>
       </Head>
-      <Layout>
+      <Layout title={"homePage.title"}>
         <main>
           <VideoContainer videos={videosState} />
         </main>

@@ -1,5 +1,12 @@
-{
-    "home_page": {
+{"navBar": {
+    "home": "Home",
+    "blog": "Blog",
+    "contact": "Contact"
+},
+    "homePage": {
       "title": "Welcome to your dashboard!"
-    }
+    },
+    "contact": {
+        "title": "Contact"
+      }
   }

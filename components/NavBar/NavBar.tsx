@@ -6,6 +6,7 @@ import Image from "next/image";
 import { useAppContext } from "../../context/appContext";
 import logo from "../../public/assets/Logo.png";
 import i18next from "i18next";
+import { useTranslation } from "react-i18next";
 
 interface NavBarProps {}
 
@@ -15,10 +16,12 @@ const NavBar: React.FC<NavBarProps> = () => {
     { id: 2, language: "en", src: en },
   ];
   const { appContext, setAppContext } = useAppContext();
+  const { t } = useTranslation();
+
   return (
     <ul className={styles.navList}>
-      <li className={styles.navItem}>Accueil</li>
-      <li className={styles.navItem}>Blog</li>
+      <li className={styles.navItem}>{t("navBar.home")}</li>
+      <li className={styles.navItem}>{t("navBar.blog")}</li>
       <li className={cx(styles.logoContainer, styles.navItem)}>
         <Image
           src={logo}
@@ -28,7 +31,7 @@ const NavBar: React.FC<NavBarProps> = () => {
           style={{ objectFit: "cover" }}
         />
       </li>
-      <li className={styles.navItem}>Contact</li>
+      <li className={styles.navItem}>{t("navBar.contact")}</li>
       <li className={cx(styles.navItem, styles.languages)}>
         {locales.map((loc) => (
           <div
