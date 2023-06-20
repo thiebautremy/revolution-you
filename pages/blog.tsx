@@ -2,32 +2,32 @@ import { useEffect, useState } from "react";
 import Head from "next/head";
 import styles from "../styles/Home.module.scss";
 import { NextPage, GetStaticProps } from "next";
-import VideoContainer from "@/components/Videos/VideoContainer";
-import { VideoProps } from "@/components/Videos/Video";
 import Layout from "@/components/Layout/Layout";
 import { Client } from "@notionhq/client";
+import ArticlesContainer from "@/components/Articles/ArticlesContainer";
 
 interface HomePropsType {
-  videosData: VideoProps[];
+  articlesData: any;
 }
 
 const notionToken = process.env.NEXT_PUBLIC_NOTION_TOKEN;
-const videosDatabaseId = process.env.NEXT_PUBLIC_NOTION_VIDEOS_DB_ID as string;
+const articlesDatabaseId = process.env
+  .NEXT_PUBLIC_NOTION_ARTICLES_DB_ID as string;
 
-const Home: NextPage<HomePropsType> = ({ videosData }) => {
-  const [videosState, setVideosState] = useState<VideoProps[]>();
+const Home: NextPage<HomePropsType> = ({ articlesData }) => {
+  const [articlesState, setArticlesState] = useState();
 
   useEffect(() => {
-    setVideosState(videosData);
-  }, [videosData]);
+    setArticlesState(articlesData);
+  }, [articlesData]);
   return (
     <div className={styles.container}>
       <Head>
-        <title>Revolution You</title>
+        <title>Revolution You - Blog</title>
       </Head>
-      <Layout title={"homePage.title"}>
+      <Layout title={"blog.title"}>
         <main>
-          <VideoContainer videos={videosState} />
+          <ArticlesContainer articles={articlesState} />
         </main>
       </Layout>
     </div>
@@ -41,13 +41,13 @@ export const getStaticProps: GetStaticProps = async () => {
     auth: notionToken,
   });
 
-  const videosRes = await notion.databases.query({
-    database_id: videosDatabaseId,
+  const articlesRes = await notion.databases.query({
+    database_id: articlesDatabaseId,
   });
 
   return {
     props: {
-      videosData: videosRes.results,
+      articlesData: articlesRes.results,
     },
   };
 };

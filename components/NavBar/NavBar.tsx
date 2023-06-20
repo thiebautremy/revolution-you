@@ -7,6 +7,7 @@ import { useAppContext } from "../../context/appContext";
 import logo from "../../public/assets/Logo.png";
 import i18next from "i18next";
 import { useTranslation } from "react-i18next";
+import Link from "next/link";
 
 interface NavBarProps {}
 
@@ -20,8 +21,12 @@ const NavBar: React.FC<NavBarProps> = () => {
 
   return (
     <ul className={styles.navList}>
-      <li className={styles.navItem}>{t("navBar.home")}</li>
-      <li className={styles.navItem}>{t("navBar.blog")}</li>
+      <Link href={"/"}>
+        <li className={styles.navItem}>{t("navBar.home")}</li>
+      </Link>
+      <Link href={"/blog"}>
+        <li className={styles.navItem}>{t("navBar.blog")}</li>
+      </Link>
       <li className={cx(styles.logoContainer, styles.navItem)}>
         <Image
           src={logo}
@@ -31,7 +36,9 @@ const NavBar: React.FC<NavBarProps> = () => {
           style={{ objectFit: "cover" }}
         />
       </li>
-      <li className={styles.navItem}>{t("navBar.contact")}</li>
+      <Link href={"/contact"}>
+        <li className={styles.navItem}>{t("navBar.contact")}</li>
+      </Link>
       <li className={cx(styles.navItem, styles.languages)}>
         {locales.map((loc) => (
           <div

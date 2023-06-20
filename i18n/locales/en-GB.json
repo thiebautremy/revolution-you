@@ -6,6 +6,9 @@
     "homePage": {
       "title": "Welcome to your dashboard!"
     },
+    "blog": {
+      "title": "Blog"
+    },
     "contact": {
         "title": "Contact"
       }

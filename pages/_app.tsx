@@ -16,6 +16,7 @@ const Application: NextPage<ApplicationProps> = ({ Component, pageProps }) => {
           name="viewport"
           content="height=device-height,width=device-width, initial-scale=1.0, minimum-scale=1.0"
         />
+        <link rel="icon" type="image/png" href="/favicon/favicon.ico" />
       </Head>
       <AppContextProvider>
         <Component {...pageProps} />

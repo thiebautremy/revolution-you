@@ -7,6 +7,9 @@
     "homePage": {
       "title": "Bienvenue sur ton tableau de bord !"
     },
+    "blog": {
+      "title": "Articles"
+    },
     "contact": {
         "title": "Contact"
       }
